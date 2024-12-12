@@ -7,3 +7,7 @@
         <button type="submit">Crear Evento</button>
     </form>
 </div>
+<form action="/reservas/crear" method="post">
+    <input type="hidden" name="eventoId" value="${evento.id}" />
+    <button type="submit">Reservar</button>
+</form>
