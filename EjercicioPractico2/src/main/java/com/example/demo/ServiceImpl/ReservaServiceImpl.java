@@ -11,16 +11,18 @@ import java.util.List;
 public class ReservaServiceImpl implements ReservaService {
      
     @Autowired
-    private ReservaDAO reservaDAO;
+    private  ReservaDAO reservaDAO;
     
-      @Override
-    public void crearReserva(Reserva reserva) {
-        reservaDAO.save(reserva);
-        
-        
-    }
+
     @Override
-    public List<Reserva> obtenerReservasPorUsuario(Long usuarioId) {
+    public List<Reserva> findAll() {
+        Long usuarioId = null;
         return reservaDAO.findByUsuarioId(usuarioId);
+    }
+
+    @Override
+    public Reserva save(Reserva reserva) {
+        Long usuarioId = null;
+        return (Reserva) reservaDAO.findByUsuarioId(usuarioId);
     }
 }

@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReservaController {
-     @Autowired
-    private ReservaService reservaService;
+    private final ReservaService reservaService;
 
-    @Autowired
-    private EventoService eventoService;
-    
-     @GetMapping("/reservas")
-    public String mostrarReservas(Model model) {
-         Long usuarioId = null;
-       model.addAttribute("reservas", reservaService.obtenerReservasPorUsuario(usuarioId));
-        return "reservas/lista";  
-    
-}
+    public ReservaController(ReservaService reservaService) {
+        this.reservaService = reservaService;
+    }
+
+    @GetMapping("/reservas")
+    public String listReservas(Model model) {
+        model.addAttribute("reservas", reservaService.findAll());
+        return "reservas";
+    }
 }
